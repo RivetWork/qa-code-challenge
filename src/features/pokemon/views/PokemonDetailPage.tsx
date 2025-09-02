@@ -5,14 +5,16 @@ import PokemonDetailsAbilities from "../components/Details/PokemonDetailsAbiliti
 import PokemonDetailsHeightWeight from "../components/Details/PokemonDetailsHeightWeight";
 import PokemonDetailsStats from "../components/Details/PokemonDetailsStats";
 import PokemonDetailsDescription from "../components/Details/PokemonDetailsDescription";
+import { useParams } from "react-router-dom";
 
 export default function PokemonDetailPage() {
+  const { name = "" } = useParams();
   const {
     data: pokemon,
     isLoading,
     isError,
     error,
-  } = useGetPokemonByNameQuery("Invalid Name");
+  } = useGetPokemonByNameQuery(name);
 
   if (isLoading) return <div className="skeleton">Loading details…</div>;
   if (isError) return <div role="alert">Error: {JSON.stringify(error)}</div>;
