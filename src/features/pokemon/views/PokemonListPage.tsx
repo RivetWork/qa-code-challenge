@@ -6,10 +6,10 @@ import {
   selectDensity,
 } from "@features/settings/state/settingsSelectors";
 import PageSizeInput from "@features/settings/components/PageSizeInput";
-
-const page = 1;
+import { useState } from "react";
 
 export default function PokemonListPage() {
+  const [page, setPage] = useState(1);
   const pageSize = useSelector(selectPageSize);
   const density = useSelector(selectDensity);
 
@@ -31,10 +31,21 @@ export default function PokemonListPage() {
     <div data-density={density}>
       <div className="toolbar">
         <div>
-          <button onClick={() => {}} disabled={true} aria-label="Previous page">
+          <button
+            onClick={() => {
+              setPage(page - 1);
+            }}
+            disabled={page === 1}
+            aria-label="Previous page"
+          >
             Prev
           </button>
-          <button onClick={() => {}} aria-label="Next page">
+          <button
+            onClick={() => {
+              setPage(page + 1);
+            }}
+            aria-label="Next page"
+          >
             Next
           </button>
         </div>
