@@ -1,13 +1,18 @@
-import { useGetPokemonByNameQuery } from '@api/pokeApi';
-import PokemonDetailsHeader from '../components/Details/PokemonDetailsHeader';
-import PokemonDetailsTypes from '../components/Details/PokemonDetailsTypes';
-import PokemonDetailsAbilities from '../components/Details/PokemonDetailsAbilities';
-import PokemonDetailsHeightWeight from '../components/Details/PokemonDetailsHeightWeight';
-import PokemonDetailsStats from '../components/Details/PokemonDetailsStats';
-import PokemonDetailsDescription from '../components/Details/PokemonDetailsDescription';
+import { useGetPokemonByNameQuery } from "@api/pokeApi";
+import PokemonDetailsHeader from "../components/Details/PokemonDetailsHeader";
+import PokemonDetailsTypes from "../components/Details/PokemonDetailsTypes";
+import PokemonDetailsAbilities from "../components/Details/PokemonDetailsAbilities";
+import PokemonDetailsHeightWeight from "../components/Details/PokemonDetailsHeightWeight";
+import PokemonDetailsStats from "../components/Details/PokemonDetailsStats";
+import PokemonDetailsDescription from "../components/Details/PokemonDetailsDescription";
 
 export default function PokemonDetailPage() {
-  const { data: pokemon, isLoading, isError, error } = useGetPokemonByNameQuery('Invalid Name');
+  const {
+    data: pokemon,
+    isLoading,
+    isError,
+    error,
+  } = useGetPokemonByNameQuery("Invalid Name");
 
   if (isLoading) return <div className="skeleton">Loading details…</div>;
   if (isError) return <div role="alert">Error: {JSON.stringify(error)}</div>;
@@ -21,7 +26,10 @@ export default function PokemonDetailPage() {
       <section className="meta">
         <PokemonDetailsTypes types={pokemon.types} />
         <PokemonDetailsAbilities abilities={pokemon.abilities} />
-        <PokemonDetailsHeightWeight height={pokemon.height} weight={pokemon.weight} />
+        <PokemonDetailsHeightWeight
+          height={pokemon.height}
+          weight={pokemon.weight}
+        />
       </section>
 
       <PokemonDetailsStats stats={pokemon.stats} />
